@@ -3,12 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.8.1",
+    "@rebass/forms": "^4.0.6",
+    "@rebass/preset": "^4.0.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "date-fns": "^2.13.0",
+    "emotion-theming": "^10.0.27",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-icons": "^3.10.0",
+    "react-scripts": "3.4.1",
+    "rebass": "^4.0.7",
+    "superagent": "^5.2.2",
+    "swr": "^0.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
