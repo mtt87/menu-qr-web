@@ -54,7 +54,7 @@ function EditRestaurant({ restaurant }) {
       </Flex>
       <Flex flex={1} height="100%" mx={-2} flexDirection="row" flexWrap="wrap">
         {restaurant.Uploads.map((data) => (
-          <EditUpload data={data} />
+          <EditUpload key={data.id} data={data} restaurantId={restaurant.id} />
         ))}
         <AddUpload restaurantId={restaurant.id} />
       </Flex>

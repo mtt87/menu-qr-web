@@ -33,16 +33,27 @@ function AddUpload({ restaurantId }) {
         height="100%"
         minWidth={300}
         p={3}
-        style={{ border: '1px solid #ddd', borderRadius: 4 }}
+        style={{ border: '1px dashed #ddd', borderRadius: 4 }}
       >
-        {/* <Text mb={3}>Aggiungi un menù</Text> */}
+        <Text fontWeight="500" mb={4} fontSize={2}>
+          Aggiungi un nuovo menù
+        </Text>
         <Box mb={3}>
-          <Input disabled={uploading} ref={fileInput} type="file" />
+          <Input
+            disabled={uploading}
+            ref={fileInput}
+            type="file"
+            accept=".pdf,.jpeg,.jpg,.png"
+            mb={1}
+          />
+          <Text mb={3} fontSize={1}>
+            * solo immagini e pdf
+          </Text>
         </Box>
         <Button disabled={uploading} onClick={addMenu}>
           <Flex>
             <FaCloudUploadAlt size={18} />
-            <Text ml={2}>Carica menù</Text>
+            <Text ml={2}>Carica</Text>
           </Flex>
         </Button>
         {uploading && <Text my={2}>Caricamento...</Text>}

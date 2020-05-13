@@ -8,6 +8,7 @@ import request from 'superagent';
 
 function EditUpload({ restaurantId, data }) {
   const [uploading, setUploading] = useState(false);
+  const [showUpdated, setShowUpdated] = useState(false);
   const fileInput = useRef();
   const { getTokenSilently } = useAuth0();
   const editMenu = async () => {
@@ -15,9 +16,13 @@ function EditUpload({ restaurantId, data }) {
       setUploading(true);
       const token = await getTokenSilently();
       await request
-        .post(`${BASE_URL}/restaurants/${restaurantId}/uploads`)
+        .put(`${BASE_URL}/restaurants/${restaurantId}/uploads/${data.id}`)
         .set('Authorization', `Bearer ${token}`)
         .attach('menu', fileInput.current.files[0]);
+      setShowUpdated(true);
+      setTimeout(() => {
+        setShowUpdated(false);
+      }, 3000);
     } catch (err) {
       console.log(err);
     } finally {
@@ -35,9 +40,17 @@ function EditUpload({ restaurantId, data }) {
           {data.name}
         </Text>
         <Box py={3}>
-          <Link target="_blank" href={data.cdnUrl}>
-            <Image src={`${BASE_URL}/view-qr/${data.id}`} width={128} />
-          </Link>
+          <Text fontSize={0} mb={1}>
+            Anteprima QR
+          </Text>
+          <Box width={128} height={128} bg="#eee">
+            <Link
+              target="_blank"
+              href={`https://view.menu-qr.tech/?id=${data.id}`}
+            >
+              <Image src={`${BASE_URL}/view-qr/${data.id}`} width={128} />
+            </Link>
+          </Box>
         </Box>
         <Link fontSize={3} href={`${BASE_URL}/download-qr/${data.id}`}>
           <Button variant="outline">
@@ -50,7 +63,12 @@ function EditUpload({ restaurantId, data }) {
         <Box height={1} my={3} bg="#ddd" />
         <Text>Aggiorna il menù con una nuova versione</Text>
         <Box my={3}>
-          <Input disabled={uploading} ref={fileInput} type="file" />
+          <Input
+            disabled={uploading}
+            ref={fileInput}
+            type="file"
+            accept=".pdf,.jpeg,.jpg,.png"
+          />
         </Box>
         <Button disabled={uploading} onClick={editMenu}>
           <Flex>
@@ -59,6 +77,11 @@ function EditUpload({ restaurantId, data }) {
           </Flex>
         </Button>
         {uploading && <Text my={2}>Caricamento...</Text>}
+        {showUpdated && (
+          <Text color="green" my={2}>
+            Menù aggiornato!
+          </Text>
+        )}
       </Box>
     </Box>
   );

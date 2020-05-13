@@ -19,8 +19,15 @@ function Admin() {
       })
       .then((res) => res.body),
   );
+  if (error) {
+    return (
+      <Text textAlign="center" color="red">
+        Errore caricamento
+      </Text>
+    );
+  }
   if (!data) {
-    return <Text>Caricamento</Text>;
+    return <Text textAlign="center">Caricamento</Text>;
   }
   return (
     <Flex py={2} height="100%" bg="#fff" px={3} flexDirection="column">
@@ -40,7 +47,6 @@ function Admin() {
         </Flex>
         <AddRestaurant />
       </Box>
-      <Text color="red">{JSON.stringify(error)}</Text>
     </Flex>
   );
 }
