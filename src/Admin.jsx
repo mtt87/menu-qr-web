@@ -6,6 +6,7 @@ import { useAuth0 } from './services/auth0Wrapper';
 import SubscriptionType from './components/SubscriptionType';
 import { BASE_URL } from './config';
 import AddRestaurant from './components/AddRestaurant';
+import EditRestaurant from './components/EditRestaurant';
 
 function Admin() {
   const { getTokenSilently } = useAuth0();
@@ -34,22 +35,7 @@ function Admin() {
       <Box>
         <Flex flexDirection="column" justifyContent="center" mb={4}>
           {data.Restaurants.map((restaurant) => (
-            <Box
-              sx={{
-                borderRadius: 4,
-                boxShadow:
-                  '0 0.938em 2.188em rgba(50,50,93,.1), 0 0.313em 0.938em rgba(0,0,0,.07)',
-              }}
-              bg="#fff"
-              p={3}
-              my={3}
-            >
-              <Flex>
-                <Text fontSize={3} key={restaurant.id}>
-                  {restaurant.name}
-                </Text>
-              </Flex>
-            </Box>
+            <EditRestaurant key={restaurant.id} restaurant={restaurant} />
           ))}
         </Flex>
         <AddRestaurant />

@@ -22,17 +22,18 @@ function AddRestaurant({ createRestaurant }) {
       mx="auto"
     >
       <Label mb={1} htmlFor="restaurantName">
-        Nome
+        Nome ristorante
       </Label>
-      <Input
-        id="restaurantName"
-        name="namrestaurantNamee"
-        value={restaurantName}
-        onChange={(e) => setRestaurantName(e.target.value)}
-      />
       <Flex justifyContent="flex-end">
+        <Input
+          id="restaurantName"
+          name="namrestaurantNamee"
+          value={restaurantName}
+          onChange={(e) => setRestaurantName(e.target.value)}
+          flex={1}
+          mr={2}
+        />
         <Button
-          my={3}
           variant="primary"
           onClick={async () => {
             try {
