@@ -1,7 +1,8 @@
 import React from 'react';
-import { Flex, Box, Button } from 'rebass';
+import { Flex, Box, Button, Text } from 'rebass';
 import { useAuth0 } from '../services/auth0Wrapper';
 import HeaderProfile from './HeaderProfile';
+import { FaUser } from 'react-icons/fa';
 
 export default function NavHeader() {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -16,10 +17,14 @@ export default function NavHeader() {
       backgroundColor="transparent"
       alignItems="center"
       bg="#fff"
+      my={3}
     >
-      <Box mr={4}></Box>
-      <Flex flex={1}></Flex>
-      <Flex flexDirection="row" alignItems="center" justifyContent="flex-end">
+      <Flex
+        width={1}
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="flex-end"
+      >
         {isAuthenticated ? (
           <>
             <HeaderProfile />
@@ -28,8 +33,11 @@ export default function NavHeader() {
             </Button>
           </>
         ) : (
-          <Button variant="primary" onClick={() => loginWithRedirect()}>
-            Area ristoratore
+          <Button variant="outline" onClick={() => loginWithRedirect()}>
+            <Flex>
+              <FaUser />
+              <Text ml={2}>Area ristoratore</Text>
+            </Flex>
           </Button>
         )}
       </Flex>

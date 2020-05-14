@@ -4,7 +4,7 @@ export default {
   ...baseTheme,
   colors: {
     ...baseTheme.colors,
-    primary: '#6886c5',
+    primary: '#035aa6',
   },
   forms: {
     input: {
@@ -15,11 +15,20 @@ export default {
   buttons: {
     outline: {
       ...baseTheme.buttons.outline,
+      boxShadow: 'none',
+      borderColor: 'primary',
+      borderWidth: 2,
+      borderStyle: 'solid',
       cursor: 'pointer',
     },
     primary: {
       ...baseTheme.buttons.primary,
       cursor: 'pointer',
+    },
+    xxl: {
+      variant: 'buttons.primary',
+      px: 4,
+      borderRadius: 8,
     },
   },
 };

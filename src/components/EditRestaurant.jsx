@@ -48,7 +48,10 @@ function EditRestaurant({ restaurant }) {
             }}
             bg="#d9455f"
           >
-            <FaTrash />
+            <Flex>
+              <FaTrash />
+              <Text ml={2}>Rimuovi</Text>
+            </Flex>
           </Button>
         </Flex>
       </Flex>

@@ -37,26 +37,36 @@ function EditUpload({ restaurantId, data }) {
         style={{ border: '1px solid #ddd', borderRadius: 4 }}
       >
         <Text mb={1} fontWeight="bold">
-          {data.name}
+          Il mio primo menù
         </Text>
         <Box py={3}>
           <Text fontSize={0} mb={1}>
             Anteprima QR
           </Text>
-          <Box width={128} height={128} bg="#eee">
-            <Link
-              target="_blank"
-              href={`https://view.menu-qr.tech/?id=${data.id}`}
-            >
-              <Image src={`${BASE_URL}/view-qr/${data.id}`} width={128} />
-            </Link>
-          </Box>
+          <Flex>
+            <Box mr={2} width={128} height={128} bg="#eee">
+              <Link
+                target="_blank"
+                href={`https://view.menu-qr.tech/?id=${data.id}`}
+              >
+                <Image src={`${BASE_URL}/view-qr/${data.id}`} width={128} />
+              </Link>
+            </Box>
+            <Box height={128}>
+              <Box
+                height="128"
+                frameBorder="0"
+                as="iframe"
+                src={`https://view.menu-qr.tech/?id=${data.id}`}
+              />
+            </Box>
+          </Flex>
         </Box>
         <Link fontSize={3} href={`${BASE_URL}/download-qr/${data.id}`}>
           <Button variant="outline">
             <Flex alignSelf="center">
               <FaPrint />
-              <Text ml={2}>Scarica QR da stampare</Text>
+              <Text ml={2}>Stampa QR</Text>
             </Flex>
           </Button>
         </Link>
