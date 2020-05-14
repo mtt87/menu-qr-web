@@ -13,34 +13,34 @@ export default function NavHeader() {
       }}
       px={3}
       height={50}
-      flexDirection="row"
       backgroundColor="transparent"
-      alignItems="center"
       bg="#fff"
       my={3}
     >
-      <Flex
-        width={1}
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="flex-end"
-      >
-        {isAuthenticated ? (
-          <>
-            <HeaderProfile />
-            <Button variant="outline" onClick={() => logout()}>
-              Logout
+      <Box maxWidth={1152} mx="auto" width={1}>
+        <Flex
+          width={1}
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="flex-end"
+        >
+          {isAuthenticated ? (
+            <>
+              <HeaderProfile />
+              <Button variant="outline" onClick={() => logout()}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <Button variant="outline" onClick={() => loginWithRedirect()}>
+              <Flex>
+                <FaUser />
+                <Text ml={2}>Area ristoratore</Text>
+              </Flex>
             </Button>
-          </>
-        ) : (
-          <Button variant="outline" onClick={() => loginWithRedirect()}>
-            <Flex>
-              <FaUser />
-              <Text ml={2}>Area ristoratore</Text>
-            </Flex>
-          </Button>
-        )}
-      </Flex>
+          )}
+        </Flex>
+      </Box>
     </Flex>
   );
 }

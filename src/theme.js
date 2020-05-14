@@ -15,15 +15,18 @@ export default {
   buttons: {
     outline: {
       ...baseTheme.buttons.outline,
-      boxShadow: 'none',
       borderColor: 'primary',
       borderWidth: 2,
       borderStyle: 'solid',
       cursor: 'pointer',
+      boxShadow:
+        '0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1)',
     },
     primary: {
       ...baseTheme.buttons.primary,
       cursor: 'pointer',
+      boxShadow:
+        '0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1)',
     },
     xxl: {
       variant: 'buttons.primary',
