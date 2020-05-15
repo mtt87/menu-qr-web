@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Flex, Text, Button, Box, Image, Link } from 'rebass';
-import { FaCloudUploadAlt, FaDownload, FaPrint } from 'react-icons/fa';
+import { FaCloudUploadAlt, FaPrint, FaEdit, FaTrash } from 'react-icons/fa';
+import { BsEyeFill } from 'react-icons/bs';
 import { Input } from '@rebass/forms';
 import { BASE_URL } from '../config';
 import { useAuth0 } from '../services/auth0Wrapper';
@@ -9,6 +10,7 @@ import request from 'superagent';
 function EditUpload({ restaurantId, data }) {
   const [uploading, setUploading] = useState(false);
   const [showUpdated, setShowUpdated] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const fileInput = useRef();
   const { getTokenSilently } = useAuth0();
   const editMenu = async () => {
@@ -32,65 +34,110 @@ function EditUpload({ restaurantId, data }) {
   return (
     <Box p={2}>
       <Box
-        minWidth={300}
+        minWidth={280}
         p={3}
         style={{ border: '1px solid #ddd', borderRadius: 4 }}
       >
         <Text mb={1} fontWeight="bold">
-          Il mio primo menù
+          Menù
         </Text>
-        <Box py={3}>
-          <Text fontSize={0} mb={1}>
-            Anteprima QR
-          </Text>
-          <Flex>
-            <Box mr={2} width={128} height={128} bg="#eee">
+        <Box my={3}>
+          <Box mr={3}>
+            {/* <Text mb={1} fontSize={1}>
+              Anteprima QR
+            </Text> */}
+            <Box mb={3}>
               <Link
                 target="_blank"
                 href={`https://view.menu-qr.tech/?id=${data.id}`}
               >
-                <Image src={`${BASE_URL}/view-qr/${data.id}`} width={128} />
+                <Image
+                  bg="#eee"
+                  src={`${BASE_URL}/view-qr/${data.id}`}
+                  width={128}
+                  height={128}
+                />
               </Link>
             </Box>
-            <Box height={128}>
-              <Box
-                height="128"
-                frameBorder="0"
-                as="iframe"
-                src={`https://view.menu-qr.tech/?id=${data.id}`}
+            <Box mb={2}>
+              <Link fontSize={3} href={`${BASE_URL}/download-qr/${data.id}`}>
+                <Button variant="outline">
+                  <Flex alignItems="center">
+                    <FaPrint />
+                    <Text ml={2}>Stampa QR code</Text>
+                  </Flex>
+                </Button>
+              </Link>
+            </Box>
+            <Box mb={2}>
+              <Link
+                target="_blank"
+                href={`https://view.menu-qr.tech/?id=${data.id}`}
+              >
+                <Button variant="outline">
+                  <Flex alignItems="center">
+                    <BsEyeFill />
+                    <Text ml={2}>Visualizza menu</Text>
+                  </Flex>
+                </Button>
+              </Link>
+            </Box>
+          </Box>
+        </Box>
+        <Box height={1} my={3} bg="#ddd" />
+        {openUpdate ? (
+          <Box>
+            <Text>Aggiorna il menù con una nuova versione</Text>
+            <Box my={3}>
+              <Input
+                disabled={uploading}
+                ref={fileInput}
+                type="file"
+                accept=".pdf,.jpeg,.jpg,.png"
               />
             </Box>
-          </Flex>
-        </Box>
-        <Link fontSize={3} href={`${BASE_URL}/download-qr/${data.id}`}>
-          <Button variant="outline">
-            <Flex alignSelf="center">
-              <FaPrint />
-              <Text ml={2}>Stampa QR</Text>
+            <Flex>
+              <Button
+                variant="outline"
+                mr={2}
+                disabled={uploading}
+                onClick={() => setOpenUpdate(false)}
+              >
+                <Text>Chiudi</Text>
+              </Button>
+              <Button variant="primary" disabled={uploading} onClick={editMenu}>
+                <Flex>
+                  <FaCloudUploadAlt size={18} />
+                  <Text ml={2}>Aggiorna</Text>
+                </Flex>
+              </Button>
             </Flex>
-          </Button>
-        </Link>
-        <Box height={1} my={3} bg="#ddd" />
-        <Text>Aggiorna il menù con una nuova versione</Text>
-        <Box my={3}>
-          <Input
-            disabled={uploading}
-            ref={fileInput}
-            type="file"
-            accept=".pdf,.jpeg,.jpg,.png"
-          />
-        </Box>
-        <Button disabled={uploading} onClick={editMenu}>
+            {uploading && <Text my={2}>Caricamento...</Text>}
+            {showUpdated && (
+              <Text color="green" my={2}>
+                Menù aggiornato!
+              </Text>
+            )}
+          </Box>
+        ) : (
           <Flex>
-            <FaCloudUploadAlt size={18} />
-            <Text ml={2}>Aggiorna menù</Text>
+            <Box mr={2}>
+              <Button onClick={() => setOpenUpdate(true)} variant="outline">
+                <Flex alignItems="center">
+                  <FaEdit />
+                  <Text ml={2}>Cambia</Text>
+                </Flex>
+              </Button>
+            </Box>
+            <Box mr={2}>
+              <Button variant="outline">
+                <Flex alignItems="center">
+                  <FaTrash />
+                  <Text ml={2}>Elimina</Text>
+                </Flex>
+              </Button>
+            </Box>
           </Flex>
-        </Button>
-        {uploading && <Text my={2}>Caricamento...</Text>}
-        {showUpdated && (
-          <Text color="green" my={2}>
-            Menù aggiornato!
-          </Text>
         )}
       </Box>
     </Box>

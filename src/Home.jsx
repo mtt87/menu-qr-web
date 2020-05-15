@@ -159,11 +159,11 @@ function Home() {
               Devi cambiare il menù? Mantieni lo stesso QR!
             </Heading>
             <Text fontSize={3} mb={2} textAlign="center">
-              Evita di stampare continuamente nuovi QR code.
+              Evita di stampare continuamente nuovi QR code
             </Text>
             <Text fontSize={3} mb={2} textAlign="center">
               Una volta creato un QR code per un menù puoi aggiornarlo quante
-              volte vuoi clienti vedranno il menù aggiornato!
+              volte vuoi
             </Text>
             <Text fontSize={3} mb={2} textAlign="center">
               I tuoi clienti vedranno sempre il menù aggiornato!
@@ -190,7 +190,7 @@ function Home() {
               <Text mt={3} mb={2} fontSize={4} textAlign="center">
                 x.xx€ al mese
               </Text>
-              <Text textAlign="center">al mese per ogni ristorante</Text>
+              <Text textAlign="center">per ogni ristorante</Text>
             </Flex>
           </Box>
           <Box width={[1, 0.5, 0.3333]} p={3}>

@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { Flex, Text, Button, Box } from 'rebass';
 import { FaCloudUploadAlt } from 'react-icons/fa';
-import { Input } from '@rebass/forms';
+import { Input, Label, Select } from '@rebass/forms';
 import { BASE_URL } from '../config';
 import { useAuth0 } from '../services/auth0Wrapper';
 import request from 'superagent';
 import { mutate } from 'swr';
 
 function AddUpload({ restaurantId }) {
+  const [hasFiles, setHasFiles] = useState(false);
+  const [type, setType] = useState('');
   const [uploading, setUploading] = useState(false);
   const fileInput = useRef();
   const { getTokenSilently } = useAuth0();
@@ -35,9 +37,16 @@ function AddUpload({ restaurantId }) {
         p={3}
         style={{ border: '1px dashed #ddd', borderRadius: 4 }}
       >
-        <Text fontWeight="500" mb={4} fontSize={2}>
-          Aggiungi un nuovo menù
-        </Text>
+        <Label mb={1}>Tipologia</Label>
+        <Select value={type} onChange={(e) => setType(e.target.value)} mb={3}>
+          <option value="" disabled></option>
+          <option value="default">Menu completo</option>
+          <option value="drinks">Menu bevande</option>
+          <option value="desserts">Menu dessert</option>
+          <option value="lunch">Menu pranzo</option>
+          <option value="dinner">Menu cena</option>
+          <option value="daily">Menu del giorno</option>
+        </Select>
         <Box mb={3}>
           <Input
             disabled={uploading}
@@ -45,12 +54,14 @@ function AddUpload({ restaurantId }) {
             type="file"
             accept=".pdf,.jpeg,.jpg,.png"
             mb={1}
+            onChange={(e) => setHasFiles(e.target.files.length > 0)}
           />
           <Text mb={3} fontSize={1}>
             * solo immagini e pdf
           </Text>
         </Box>
-        <Button disabled={uploading} onClick={addMenu}>
+        {console.log(uploading, !hasFiles, !type)}
+        <Button disabled={uploading || !hasFiles || !type} onClick={addMenu}>
           <Flex>
             <FaCloudUploadAlt size={18} />
             <Text ml={2}>Carica</Text>
