@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
-import { Box, Flex, Text, Button } from 'rebass';
+import React from 'react';
+import { Flex, Text, Button } from 'rebass';
 import { useAuth0 } from '../services/auth0Wrapper';
-import { FaTrash, FaPlus } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 import request from 'superagent';
-import { BASE_URL } from '../config';
+import { BASE_URL, MENU_TYPES } from '../config';
 import AddUpload from './AddUpload';
 import EditUpload from './EditUpload';
 import { mutate } from 'swr';
 
 function EditRestaurant({ restaurant }) {
-  const [addNewMenu, setAddNewMenu] = useState(false);
   const { getTokenSilently } = useAuth0();
+  const availableMenus = () => {
+    return Object.keys(MENU_TYPES)
+      .map((key) => {
+        if (restaurant.Uploads.some((menu) => menu.type === key)) {
+          return null;
+        }
+        return key;
+      })
+      .filter(Boolean);
+  };
   return (
     <Flex
       sx={{
@@ -60,31 +69,12 @@ function EditRestaurant({ restaurant }) {
         {restaurant.Uploads.map((data) => (
           <EditUpload key={data.id} data={data} restaurantId={restaurant.id} />
         ))}
-        {addNewMenu ? (
-          <AddUpload restaurantId={restaurant.id} />
-        ) : (
-          <Box
-            onClick={() => setAddNewMenu(true)}
-            sx={{ cursor: 'pointer' }}
-            p={2}
-          >
-            <Flex
-              height="100%"
-              minWidth={300}
-              p={3}
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              style={{ border: '1px dashed #ddd', borderRadius: 4 }}
-            >
-              <FaPlus size={32} />
-              <Text mt={3}>
-                {!restaurant.Uploads.length
-                  ? 'Aggiungi il tuo primo menu'
-                  : 'Hai piu di un menu? Aggiungine un altro'}
-              </Text>
-            </Flex>
-          </Box>
+        {restaurant.Uploads.length < 7 && (
+          <AddUpload
+            first={!restaurant.Uploads.length}
+            restaurantId={restaurant.id}
+            availableMenus={availableMenus()}
+          />
         )}
       </Flex>
     </Flex>

@@ -1,14 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { Flex, Text, Button, Box } from 'rebass';
-import { FaCloudUploadAlt } from 'react-icons/fa';
+import { FaCloudUploadAlt, FaPlus } from 'react-icons/fa';
 import { Input, Label, Select } from '@rebass/forms';
-import { BASE_URL } from '../config';
+import { BASE_URL, MENU_TYPES } from '../config';
 import { useAuth0 } from '../services/auth0Wrapper';
 import request from 'superagent';
 import { mutate } from 'swr';
 
-function AddUpload({ restaurantId }) {
+function AddUpload({ restaurantId, first, availableMenus }) {
   const [hasFiles, setHasFiles] = useState(false);
+  const [open, setOpen] = useState(false);
   const [type, setType] = useState('');
   const [uploading, setUploading] = useState(false);
   const fileInput = useRef();
@@ -20,32 +21,61 @@ function AddUpload({ restaurantId }) {
       await request
         .post(`${BASE_URL}/restaurants/${restaurantId}/uploads`)
         .set('Authorization', `Bearer ${token}`)
+        .field('type', type)
         .attach('menu', fileInput.current.files[0]);
+      setOpen(false);
+      setType('');
       mutate('/restaurants');
     } catch (err) {
-      setUploading(false);
       console.log(err);
+      setUploading(false);
     } finally {
       setUploading(false);
     }
   };
+  if (!open) {
+    return (
+      <Box onClick={() => setOpen(true)} sx={{ cursor: 'pointer' }} p={2}>
+        <Flex
+          height="100%"
+          minWidth={280}
+          p={3}
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          style={{ border: '1px dashed #ddd', borderRadius: 4 }}
+        >
+          <FaPlus size={32} />
+          {first ? (
+            <Text mt={3}>Carica il tuo primo menu</Text>
+          ) : (
+            <Text mt={3}>Aggiungi un altra tipologia di menu</Text>
+          )}
+        </Flex>
+      </Box>
+    );
+  }
   return (
     <Box p={2}>
       <Box
         height="100%"
-        minWidth={300}
+        maxWidth={280}
         p={3}
-        style={{ border: '1px dashed #ddd', borderRadius: 4 }}
+        style={{
+          border: '1px solid #aaa',
+          borderRadius: 4,
+          boxShadow:
+            '0 0.250em 0.375em rgba(50,50,93,.09), 0 0.063em 0.188em rgba(0,0,0,.08)',
+        }}
       >
-        <Label mb={1}>Tipologia</Label>
+        <Label mb={2}>Tipologia</Label>
         <Select value={type} onChange={(e) => setType(e.target.value)} mb={3}>
           <option value="" disabled></option>
-          <option value="default">Menu completo</option>
-          <option value="drinks">Menu bevande</option>
-          <option value="desserts">Menu dessert</option>
-          <option value="lunch">Menu pranzo</option>
-          <option value="dinner">Menu cena</option>
-          <option value="daily">Menu del giorno</option>
+          {availableMenus.map((t) => (
+            <option key={t} value={t}>
+              {MENU_TYPES[t]}
+            </option>
+          ))}
         </Select>
         <Box mb={3}>
           <Input
@@ -60,7 +90,6 @@ function AddUpload({ restaurantId }) {
             * solo immagini e pdf
           </Text>
         </Box>
-        {console.log(uploading, !hasFiles, !type)}
         <Button disabled={uploading || !hasFiles || !type} onClick={addMenu}>
           <Flex>
             <FaCloudUploadAlt size={18} />

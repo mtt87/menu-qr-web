@@ -20,18 +20,36 @@ export default {
       borderStyle: 'solid',
       cursor: 'pointer',
       boxShadow:
-        '0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1)',
+        '0 0.250em 0.375em rgba(50,50,93,.09), 0 0.063em 0.188em rgba(0,0,0,.08)',
+      ':hover': {
+        boxShadow:
+          '0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1)',
+      },
     },
     primary: {
       ...baseTheme.buttons.primary,
       cursor: 'pointer',
       boxShadow:
-        '0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1)',
+        '0 0.250em 0.375em rgba(50,50,93,.09), 0 0.063em 0.188em rgba(0,0,0,.08)',
+      ':hover': {
+        boxShadow:
+          '0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1)',
+      },
+      ':disabled': {
+        cursor: 'default',
+        opacity: 0.3,
+      },
     },
     xxl: {
       variant: 'buttons.primary',
       px: 4,
       borderRadius: 8,
+      boxShadow:
+        '0 0.250em 0.375em rgba(50,50,93,.09), 0 0.063em 0.188em rgba(0,0,0,.08)',
+      ':hover': {
+        boxShadow:
+          '0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1)',
+      },
     },
   },
 };

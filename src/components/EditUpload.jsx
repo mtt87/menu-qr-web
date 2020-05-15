@@ -3,9 +3,10 @@ import { Flex, Text, Button, Box, Image, Link } from 'rebass';
 import { FaCloudUploadAlt, FaPrint, FaEdit, FaTrash } from 'react-icons/fa';
 import { BsEyeFill } from 'react-icons/bs';
 import { Input } from '@rebass/forms';
-import { BASE_URL } from '../config';
+import { BASE_URL, MENU_TYPES } from '../config';
 import { useAuth0 } from '../services/auth0Wrapper';
 import request from 'superagent';
+import { mutate } from 'swr';
 
 function EditUpload({ restaurantId, data }) {
   const [uploading, setUploading] = useState(false);
@@ -31,6 +32,21 @@ function EditUpload({ restaurantId, data }) {
       setUploading(false);
     }
   };
+  console.log(data.type);
+  const deleteMenu = async () => {
+    try {
+      if (!window.confirm('Sei sicuro di voler eliminare questo menu?')) {
+        return;
+      }
+      const token = await getTokenSilently();
+      await request
+        .delete(`${BASE_URL}/restaurants/${restaurantId}/uploads/${data.id}`)
+        .set('Authorization', `Bearer ${token}`);
+      mutate('/restaurants');
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Box p={2}>
       <Box
@@ -39,7 +55,7 @@ function EditUpload({ restaurantId, data }) {
         style={{ border: '1px solid #ddd', borderRadius: 4 }}
       >
         <Text mb={1} fontWeight="bold">
-          Menù
+          {MENU_TYPES[data.type]}
         </Text>
         <Box my={3}>
           <Box mr={3}>
@@ -130,7 +146,7 @@ function EditUpload({ restaurantId, data }) {
               </Button>
             </Box>
             <Box mr={2}>
-              <Button variant="outline">
+              <Button onClick={deleteMenu} variant="outline">
                 <Flex alignItems="center">
                   <FaTrash />
                   <Text ml={2}>Elimina</Text>

@@ -45,7 +45,7 @@ function Admin() {
             <EditRestaurant key={restaurant.id} restaurant={restaurant} />
           ))}
         </Flex>
-        <AddRestaurant />
+        <AddRestaurant first={!data.Restaurants.length} />
       </Box>
     </Flex>
   );

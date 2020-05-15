@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Flex, Button } from 'rebass';
+import { Box, Flex, Button, Heading } from 'rebass';
 import { Label, Input } from '@rebass/forms';
 import { useAuth0 } from '../services/auth0Wrapper';
 import { mutate } from 'swr';
 import { BASE_URL } from '../config';
 import request from 'superagent';
 
-function AddRestaurant({ createRestaurant }) {
+function AddRestaurant({ createRestaurant, first }) {
   const { getTokenSilently } = useAuth0();
   const [restaurantName, setRestaurantName] = useState('');
   return (
@@ -21,8 +21,11 @@ function AddRestaurant({ createRestaurant }) {
       maxWidth={500}
       mx="auto"
     >
+      <Heading mb={3} as="h3">
+        {first ? 'Aggiungi il tuo ristorante' : 'Hai un altro ristorante?'}
+      </Heading>
       <Label mb={1} htmlFor="restaurantName">
-        Nome ristorante
+        Nome
       </Label>
       <Flex justifyContent="flex-end">
         <Input
@@ -51,7 +54,7 @@ function AddRestaurant({ createRestaurant }) {
             }
           }}
         >
-          Aggiungi ristorante
+          {first ? 'Salva' : 'Aggiungi'}
         </Button>
       </Flex>
     </Box>
