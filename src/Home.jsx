@@ -39,7 +39,7 @@ function Home() {
           >
             Prova ora gratis per una settimana
           </Button>
-          <Text>Poi 3.99€ al mese per ristorante</Text>
+          <Text>poi 3.99€ al mese per ristorante</Text>
         </Flex>
       </Box>
 
@@ -50,21 +50,29 @@ function Home() {
           justifyContent="center"
           alignItems="center"
           my={5}
+          flexWrap="wrap"
         >
-          <Flex justifyContent="center" alignItems="center" width={0.4} p={3}>
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            width={[1, 0.4]}
+            p={3}
+          >
             <Image maxHeight={350} src={uploading} />
           </Flex>
           <Flex
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            width={0.6}
+            width={[1, 0.6]}
             p={4}
           >
-            <Heading fontSize={5} mb={3} as="h2">
+            <Heading textAlign="center" fontSize={5} mb={3} as="h2">
               Carica il tuo menù nella piattaforma
             </Heading>
-            <Text fontSize={1}>Suggeriamo il formato PDF, JPG o PNG</Text>
+            <Text textAlign="center" fontSize={1}>
+              Suggeriamo il formato PDF, JPG o PNG
+            </Text>
           </Flex>
         </Flex>
       </Box>
@@ -76,25 +84,26 @@ function Home() {
           justifyContent="center"
           alignItems="center"
           py={5}
+          flexWrap="wrap"
         >
           <Flex
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            width={0.6}
+            width={[1, 0.6]}
             p={4}
           >
             <Heading mb={3} as="h2" fontSize={5} textAlign="center">
               Ottieni un magic QR code
             </Heading>
             <Text fontSize={3} textAlign="center">
-              Da stampare e mettere sui tavoli.
+              Da stampare e mettere sui tavoli
             </Text>
             <Text fontSize={3} textAlign="center">
               Non preoccuparti non cambierà mai!
             </Text>
           </Flex>
-          <Box width={0.4} p={3}>
+          <Box width={[1, 0.4]} p={3}>
             <Image src={printMenu} />
           </Box>
         </Flex>
@@ -107,15 +116,21 @@ function Home() {
           justifyContent="center"
           alignItems="center"
           py={5}
+          flexWrap="wrap"
         >
-          <Flex width={0.4} justifyContent="center" alignItems="center" p={3}>
+          <Flex
+            width={[1, 0.4]}
+            justifyContent="center"
+            alignItems="center"
+            p={3}
+          >
             <Image height={300} src={scanMenu} />
           </Flex>
           <Flex
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            width={0.6}
+            width={[1, 0.6]}
             p={4}
           >
             <Heading fontSize={5} mb={3} textAlign="center" as="h2">
@@ -134,6 +149,7 @@ function Home() {
           justifyContent="center"
           alignItems="center"
           py={5}
+          flexWrap="wrap"
         >
           <Flex
             flexDirection="column"
@@ -149,8 +165,7 @@ function Home() {
               Evita di stampare continuamente nuovi QR code
             </Text>
             <Text fontSize={3} mb={2} textAlign="center">
-              Una volta creato un QR code per un menù puoi aggiornarlo quante
-              volte vuoi
+              Aggiorna online i tuoi menù quante volte vuoi
             </Text>
             <Text fontSize={3} mb={2} textAlign="center">
               I tuoi clienti vedranno sempre il menù aggiornato!
@@ -159,7 +174,7 @@ function Home() {
         </Flex>
       </Box>
       <Box py={5} bg="#f2f2f2">
-        <Flex maxWidth={1152} mx="auto" mb={4}>
+        <Flex flexWrap="wrap" maxWidth={1152} mx="auto" mb={4}>
           <Box width={[1, 0.5, 0.3333]} p={3}>
             <Flex flexDirection="column" alignItems="center">
               <FcKindle size={48} />
