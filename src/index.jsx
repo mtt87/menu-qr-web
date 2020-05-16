@@ -24,6 +24,7 @@ const Root = () => (
     audience="https://api.menu-qr.tech"
     redirect_uri={window.location.origin}
     onRedirectCallback={onRedirectCallback}
+    ui_locales="it"
   >
     <ThemeProvider theme={theme}>
       <App />

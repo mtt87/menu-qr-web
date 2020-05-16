@@ -173,7 +173,7 @@ function Home() {
           </Flex>
         </Flex>
       </Box>
-      <Box py={5} bg="#f2f2f2">
+      <Box py={4} bg="#f2f2f2">
         <Flex flexWrap="wrap" maxWidth={1152} mx="auto" mb={4}>
           <Box width={[1, 0.5, 0.3333]} p={3}>
             <Flex flexDirection="column" alignItems="center">

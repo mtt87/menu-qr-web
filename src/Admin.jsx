@@ -44,6 +44,7 @@ function Admin() {
           type={data.subscriptionType}
           subscriptionEnds={data.subscriptionEnds}
           createdAt={data.createdAt}
+          totalRestaurants={data.Restaurants.length}
         />
       </Box>
       <Box height={1} bg="#f2f2f2" my={4} />

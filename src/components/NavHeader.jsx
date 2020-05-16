@@ -18,7 +18,12 @@ export default function NavHeader() {
       my={3}
     >
       <Box maxWidth={1152} mx="auto" width={1}>
-        <Flex width={1} flexDirection="row" alignItems="center">
+        <Flex
+          width={1}
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
           {isAuthenticated ? (
             <>
               <HeaderProfile />
