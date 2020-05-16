@@ -38,7 +38,7 @@ function AddUpload({ restaurantId, first, availableMenus }) {
       <Box onClick={() => setOpen(true)} sx={{ cursor: 'pointer' }} p={2}>
         <Flex
           height="100%"
-          minWidth={280}
+          width={260}
           p={3}
           flexDirection="column"
           justifyContent="center"
@@ -49,7 +49,7 @@ function AddUpload({ restaurantId, first, availableMenus }) {
           {first ? (
             <Text mt={3}>Carica il tuo primo menu</Text>
           ) : (
-            <Text mt={3}>Aggiungi un altra tipologia di menu</Text>
+            <Text mt={3}>Aggiungi un altro tipo di menu</Text>
           )}
         </Flex>
       </Box>
@@ -59,10 +59,10 @@ function AddUpload({ restaurantId, first, availableMenus }) {
     <Box p={2}>
       <Box
         height="100%"
-        maxWidth={280}
+        width={260}
         p={3}
         style={{
-          border: '1px solid #aaa',
+          border: '1px solid #ddd',
           borderRadius: 4,
           boxShadow:
             '0 0.250em 0.375em rgba(50,50,93,.09), 0 0.063em 0.188em rgba(0,0,0,.08)',
@@ -70,7 +70,9 @@ function AddUpload({ restaurantId, first, availableMenus }) {
       >
         <Label mb={2}>Tipologia</Label>
         <Select value={type} onChange={(e) => setType(e.target.value)} mb={3}>
-          <option value="" disabled></option>
+          <option value="" disabled>
+            Seleziona tipo di menù
+          </option>
           {availableMenus.map((t) => (
             <option key={t} value={t}>
               {MENU_TYPES[t]}
@@ -90,12 +92,17 @@ function AddUpload({ restaurantId, first, availableMenus }) {
             * solo immagini e pdf
           </Text>
         </Box>
-        <Button disabled={uploading || !hasFiles || !type} onClick={addMenu}>
-          <Flex>
-            <FaCloudUploadAlt size={18} />
-            <Text ml={2}>Carica</Text>
-          </Flex>
-        </Button>
+        <Flex alignItems="center">
+          <Button mr={2} variant="outline" onClick={() => setOpen(false)}>
+            <Text>Chiudi</Text>
+          </Button>
+          <Button disabled={uploading || !hasFiles || !type} onClick={addMenu}>
+            <Flex>
+              <FaCloudUploadAlt size={18} />
+              <Text ml={2}>Carica</Text>
+            </Flex>
+          </Button>
+        </Flex>
         {uploading && <Text my={2}>Caricamento...</Text>}
       </Box>
     </Box>

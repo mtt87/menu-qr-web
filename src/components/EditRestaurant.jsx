@@ -20,17 +20,28 @@ function EditRestaurant({ restaurant }) {
       })
       .filter(Boolean);
   };
+  const deleteRestaurant = async () => {
+    try {
+      const token = await getTokenSilently();
+      await request
+        .delete(`${BASE_URL}/restaurants/${restaurant.id}`)
+        .set('Authorization', `Bearer ${token}`);
+      mutate('/restaurants');
+    } catch (err) {
+      alert("C'é stato un problema, riprova");
+    }
+  };
   return (
     <Flex
       sx={{
-        borderRadius: 4,
-        boxShadow:
-          '0 0.938em 2.188em rgba(50,50,93,.1), 0 0.313em 0.938em rgba(0,0,0,.07)',
+        borderBottom: '1px solid #f2f2f2',
       }}
       bg="#fff"
-      p={4}
+      py={4}
+      px={[2, 0]}
+      pt={2}
       minHeight={250}
-      my={3}
+      mb={4}
       flexDirection="column"
     >
       <Flex mb={3} justifyContent="space-between">
@@ -45,15 +56,7 @@ function EditRestaurant({ restaurant }) {
                   `Sei sicuro che vuoi eliminare il ristorante ${restaurant.name} e tutti i menu caricati? Attenzione: l'operazione non e' reversibile!`,
                 )
               ) {
-                try {
-                  const token = await getTokenSilently();
-                  await request
-                    .delete(`${BASE_URL}/restaurants/${restaurant.id}`)
-                    .set('Authorization', `Bearer ${token}`);
-                  mutate('/restaurants');
-                } catch (err) {
-                  alert("C'é stato un problema, riprova");
-                }
+                deleteRestaurant();
               }
             }}
             bg="#d9455f"

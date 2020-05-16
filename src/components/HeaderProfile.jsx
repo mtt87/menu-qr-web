@@ -9,9 +9,6 @@ const HeaderProfile = () => {
   }
   return (
     <Flex mr={2} alignItems="center">
-      <Text fontSize={1} fontWeight="body" mr={2}>
-        {user.email}
-      </Text>
       <Image
         src={user.picture}
         width={32}
@@ -19,6 +16,9 @@ const HeaderProfile = () => {
           borderRadius: 32,
         }}
       />
+      <Text fontSize={1} fontWeight="body" ml={2}>
+        {user.email}
+      </Text>
     </Flex>
   );
 };

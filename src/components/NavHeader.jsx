@@ -18,12 +18,7 @@ export default function NavHeader() {
       my={3}
     >
       <Box maxWidth={1152} mx="auto" width={1}>
-        <Flex
-          width={1}
-          flexDirection="row"
-          alignItems="center"
-          justifyContent="flex-end"
-        >
+        <Flex width={1} flexDirection="row" alignItems="center">
           {isAuthenticated ? (
             <>
               <HeaderProfile />
@@ -32,12 +27,14 @@ export default function NavHeader() {
               </Button>
             </>
           ) : (
-            <Button variant="outline" onClick={() => loginWithRedirect()}>
-              <Flex>
-                <FaUser />
-                <Text ml={2}>Area ristoratore</Text>
-              </Flex>
-            </Button>
+            <Flex flex={1} justifyContent="flex-end">
+              <Button variant="outline" onClick={() => loginWithRedirect()}>
+                <Flex>
+                  <FaUser />
+                  <Text ml={2}>Area ristoratore</Text>
+                </Flex>
+              </Button>
+            </Flex>
           )}
         </Flex>
       </Box>

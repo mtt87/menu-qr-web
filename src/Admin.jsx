@@ -30,17 +30,25 @@ function Admin() {
     return <Text textAlign="center">Caricamento</Text>;
   }
   return (
-    <Flex py={2} height="100%" bg="#fff" px={3} flexDirection="column">
-      <Box mb={3}>
+    <Flex
+      width={1}
+      maxWidth={1152}
+      mx="auto"
+      mb={4}
+      my={2}
+      bg="#fff"
+      flexDirection="column"
+    >
+      <Box>
         <SubscriptionType
           type={data.subscriptionType}
           subscriptionEnds={data.subscriptionEnds}
           createdAt={data.createdAt}
         />
       </Box>
-      <Box height={1} bg="#f2f2f2" my={2} />
-      <Box>
-        <Flex flexDirection="column" justifyContent="center" mb={4}>
+      <Box height={1} bg="#f2f2f2" my={4} />
+      <Box mb={4}>
+        <Flex flexDirection="column" justifyContent="center">
           {data.Restaurants.map((restaurant) => (
             <EditRestaurant key={restaurant.id} restaurant={restaurant} />
           ))}

@@ -23,6 +23,7 @@ function EditUpload({ restaurantId, data }) {
         .set('Authorization', `Bearer ${token}`)
         .attach('menu', fileInput.current.files[0]);
       setShowUpdated(true);
+      setOpenUpdate(false);
       setTimeout(() => {
         setShowUpdated(false);
       }, 3000);
@@ -32,10 +33,13 @@ function EditUpload({ restaurantId, data }) {
       setUploading(false);
     }
   };
-  console.log(data.type);
   const deleteMenu = async () => {
     try {
-      if (!window.confirm('Sei sicuro di voler eliminare questo menu?')) {
+      if (
+        !window.confirm(
+          "Sei sicuro di voler eliminare questo menu? L'operazione non è reversibile!",
+        )
+      ) {
         return;
       }
       const token = await getTokenSilently();
@@ -50,60 +54,61 @@ function EditUpload({ restaurantId, data }) {
   return (
     <Box p={2}>
       <Box
-        minWidth={280}
+        height="100%"
+        width={260}
         p={3}
-        style={{ border: '1px solid #ddd', borderRadius: 4 }}
+        style={{
+          border: '1px solid #ddd',
+          borderRadius: 4,
+          boxShadow:
+            '0 0.250em 0.375em rgba(50,50,93,.09), 0 0.063em 0.188em rgba(0,0,0,.08)',
+        }}
       >
-        <Text mb={1} fontWeight="bold">
+        <Text textAlign="center" fontSize={3} mb={1}>
           {MENU_TYPES[data.type]}
         </Text>
         <Box my={3}>
-          <Box mr={3}>
-            {/* <Text mb={1} fontSize={1}>
-              Anteprima QR
-            </Text> */}
-            <Box mb={3}>
-              <Link
-                target="_blank"
-                href={`https://view.menu-qr.tech/?id=${data.id}`}
-              >
-                <Image
-                  bg="#eee"
-                  src={`${BASE_URL}/view-qr/${data.id}`}
-                  width={128}
-                  height={128}
-                />
-              </Link>
-            </Box>
-            <Box mb={2}>
-              <Link fontSize={3} href={`${BASE_URL}/download-qr/${data.id}`}>
-                <Button variant="outline">
-                  <Flex alignItems="center">
-                    <FaPrint />
-                    <Text ml={2}>Stampa QR code</Text>
-                  </Flex>
-                </Button>
-              </Link>
-            </Box>
-            <Box mb={2}>
-              <Link
-                target="_blank"
-                href={`https://view.menu-qr.tech/?id=${data.id}`}
-              >
-                <Button variant="outline">
-                  <Flex alignItems="center">
-                    <BsEyeFill />
-                    <Text ml={2}>Visualizza menu</Text>
-                  </Flex>
-                </Button>
-              </Link>
-            </Box>
+          <Flex mb={3}>
+            <Link
+              sx={{ display: 'flex', justifyContent: 'center' }}
+              target="_blank"
+              href={`https://view.menu-qr.tech/?id=${data.id}`}
+            >
+              <Image
+                bg="#eee"
+                src={`${BASE_URL}/view-qr/${data.id}`}
+                width={0.7}
+              />
+            </Link>
+          </Flex>
+          <Box mb={2}>
+            <Link href={`${BASE_URL}/download-qr/${data.id}`}>
+              <Button width={1} variant="outline">
+                <Flex justifyContent="center" alignItems="center">
+                  <FaPrint />
+                  <Text ml={2}>Stampa QR code</Text>
+                </Flex>
+              </Button>
+            </Link>
+          </Box>
+          <Box mb={2}>
+            <Link
+              target="_blank"
+              href={`https://view.menu-qr.tech/?id=${data.id}`}
+            >
+              <Button width={1} variant="outline">
+                <Flex justifyContent="center" alignItems="center">
+                  <BsEyeFill />
+                  <Text ml={2}>Visualizza menu</Text>
+                </Flex>
+              </Button>
+            </Link>
           </Box>
         </Box>
         <Box height={1} my={3} bg="#ddd" />
         {openUpdate ? (
           <Box>
-            <Text>Aggiorna il menù con una nuova versione</Text>
+            <Text>Carica una nuova versione</Text>
             <Box my={3}>
               <Input
                 disabled={uploading}
@@ -129,31 +134,31 @@ function EditUpload({ restaurantId, data }) {
               </Button>
             </Flex>
             {uploading && <Text my={2}>Caricamento...</Text>}
-            {showUpdated && (
-              <Text color="green" my={2}>
-                Menù aggiornato!
-              </Text>
-            )}
           </Box>
         ) : (
-          <Flex>
+          <Flex alignItems="center">
             <Box mr={2}>
-              <Button onClick={() => setOpenUpdate(true)} variant="outline">
+              <Button onClick={() => setOpenUpdate(true)} variant="transparent">
                 <Flex alignItems="center">
                   <FaEdit />
-                  <Text ml={2}>Cambia</Text>
+                  <Text ml={2}>Aggiorna</Text>
                 </Flex>
               </Button>
             </Box>
             <Box mr={2}>
-              <Button onClick={deleteMenu} variant="outline">
+              <Button onClick={deleteMenu} variant="transparent">
                 <Flex alignItems="center">
                   <FaTrash />
-                  <Text ml={2}>Elimina</Text>
+                  <Text ml={2}>Rimuovi</Text>
                 </Flex>
               </Button>
             </Box>
           </Flex>
+        )}
+        {showUpdated && (
+          <Text textAlign="center" color="green" my={2}>
+            Menù aggiornato!
+          </Text>
         )}
       </Box>
     </Box>

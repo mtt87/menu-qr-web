@@ -4,61 +4,72 @@ import { FaLeaf } from 'react-icons/fa';
 import { GiTwoCoins } from 'react-icons/gi';
 import { FcKindle } from 'react-icons/fc';
 import uploading from './images/uploading.svg';
-import uploadChange from './images/upload_change.svg';
-import scanQR from './images/scan_qr.png';
+import scanMenu from './images/scan_menu.svg';
+import printMenu from './images/print.svg';
 import { useAuth0 } from './services/auth0Wrapper';
 
 function Home() {
   const { loginWithRedirect } = useAuth0();
   return (
-    <Box>
-      <Heading fontSize={5} my={4} textAlign="center" as="h1">
-        Il menù ai tempi del COVID-19 in tre semplici passi
-      </Heading>
-      <Flex my={4} justifyContent="center">
-        <Button onClick={() => loginWithRedirect()} height={48} variant="xxl">
-          Prova ora gratis per una settimana
-        </Button>
-      </Flex>
-      <Flex
-        maxWidth={1152}
-        mx="auto"
-        justifyContent="center"
-        alignItems="center"
-        my={5}
-      >
-        <Flex justifyContent="center" alignItems="center" width={0.4} p={3}>
-          <Image maxHeight={350} src={uploading} />
-        </Flex>
+    <>
+      <Box pb={4}>
+        <Heading fontSize={5} my={4} textAlign="center" as="h1">
+          Il menù per i ristoranti ai tempi del COVID-19
+        </Heading>
+        {/* <Flex mb={4} justifyContent="center">
+          <Image src="//placehold.it/600x300" />
+        </Flex> */}
+        <Heading fontSize={4} mb={1} textAlign="center" as="h2">
+          Genera un magic QR code che non cambia mai
+        </Heading>
+        <Heading fontSize={4} mb={1} textAlign="center" as="h2">
+          I tuoi clienti potranno visualizzare il tuo menù online
+        </Heading>
         <Flex
           flexDirection="column"
+          alignItems="center"
+          my={4}
+          justifyContent="center"
+        >
+          <Button
+            mb={3}
+            onClick={() => loginWithRedirect()}
+            height={48}
+            variant="xxl"
+          >
+            Prova ora gratis per una settimana
+          </Button>
+          <Text>Poi 3.99€ al mese per ristorante</Text>
+        </Flex>
+      </Box>
+
+      <Box bg="#f2f2f2">
+        <Flex
+          maxWidth={1152}
+          mx="auto"
           justifyContent="center"
           alignItems="center"
-          width={0.6}
-          p={3}
+          my={5}
         >
+          <Flex justifyContent="center" alignItems="center" width={0.4} p={3}>
+            <Image maxHeight={350} src={uploading} />
+          </Flex>
           <Flex
-            width={36}
-            height={36}
+            flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            sx={{
-              borderRadius: 9999,
-              borderColor: 'primary',
-              borderWidth: 1,
-              borderStyle: 'solid',
-            }}
-            mb={2}
+            width={0.6}
+            p={4}
           >
-            <Text fontSize={2}>1</Text>
+            <Heading fontSize={5} mb={3} as="h2">
+              Carica il tuo menù nella piattaforma
+            </Heading>
+            <Text fontSize={1}>Suggeriamo il formato PDF, JPG o PNG</Text>
           </Flex>
-          <Heading fontSize={5} mb={3} as="h2">
-            Carica il tuo menù nella piattaforma
-          </Heading>
-          <Text fontSize={1}>Suggeriamo il formato PDF, JPG o PNG</Text>
         </Flex>
-      </Flex>
-      <Box bg="#f0f0f0">
+      </Box>
+
+      <Box bg="#fff">
         <Flex
           maxWidth={1152}
           mx="auto"
@@ -71,76 +82,52 @@ function Home() {
             justifyContent="center"
             alignItems="center"
             width={0.6}
-            p={3}
+            p={4}
           >
-            <Flex
-              width={36}
-              height={36}
-              justifyContent="center"
-              alignItems="center"
-              sx={{
-                borderRadius: 9999,
-                borderColor: 'primary',
-                borderWidth: 1,
-                borderStyle: 'solid',
-              }}
-              mb={2}
-            >
-              <Text fontSize={2}>2</Text>
-            </Flex>
             <Heading mb={3} as="h2" fontSize={5} textAlign="center">
-              Ottieni un QR code che non cambia mai
+              Ottieni un magic QR code
             </Heading>
             <Text fontSize={3} textAlign="center">
-              Da stampare e mettere sui tavoli
+              Da stampare e mettere sui tavoli.
+            </Text>
+            <Text fontSize={3} textAlign="center">
+              Non preoccuparti non cambierà mai!
             </Text>
           </Flex>
           <Box width={0.4} p={3}>
-            <Image src={scanQR} />
+            <Image src={printMenu} />
           </Box>
         </Flex>
       </Box>
-      <Flex
-        maxWidth={1152}
-        mx="auto"
-        justifyContent="center"
-        alignItems="center"
-        py={5}
-      >
-        <Flex width={0.4} justifyContent="center" alignItems="center" p={3}>
-          <Image maxHeight={250} src={uploadChange} />
-        </Flex>
+
+      <Box bg="#f2f2f2">
         <Flex
-          flexDirection="column"
+          maxWidth={1152}
+          mx="auto"
           justifyContent="center"
           alignItems="center"
-          width={0.6}
-          p={3}
+          py={5}
         >
+          <Flex width={0.4} justifyContent="center" alignItems="center" p={3}>
+            <Image height={300} src={scanMenu} />
+          </Flex>
           <Flex
-            width={36}
-            height={36}
+            flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            sx={{
-              borderRadius: 9999,
-              borderColor: 'primary',
-              borderWidth: 1,
-              borderStyle: 'solid',
-            }}
-            mb={2}
+            width={0.6}
+            p={4}
           >
-            <Text fontSize={2}>3</Text>
+            <Heading fontSize={5} mb={3} textAlign="center" as="h2">
+              I clienti visualizzano il tuo menù
+            </Heading>
+            <Text fontSize={3} textAlign="center">
+              Tramite scansione del magic QR code visualizzeranno il tuo menù
+            </Text>
           </Flex>
-          <Heading fontSize={5} mb={3} textAlign="center" as="h2">
-            I clienti visualizzano il tuo menù
-          </Heading>
-          <Text fontSize={3} textAlign="center">
-            Tramite cansione del QR code verranno indirizzati al tuo menù
-          </Text>
         </Flex>
-      </Flex>
-      <Box bg="#f0f0f0">
+      </Box>
+      <Box bg="#fff">
         <Flex
           maxWidth={1152}
           mx="auto"
@@ -156,7 +143,7 @@ function Home() {
             p={3}
           >
             <Heading fontSize={5} mb={3} textAlign="center" as="h2">
-              Devi cambiare il menù? Mantieni lo stesso QR!
+              Devi cambiare il menù? Il magic QR non cambia!
             </Heading>
             <Text fontSize={3} mb={2} textAlign="center">
               Evita di stampare continuamente nuovi QR code
@@ -171,7 +158,7 @@ function Home() {
           </Flex>
         </Flex>
       </Box>
-      <Box py={5} bg="#fff">
+      <Box py={5} bg="#f2f2f2">
         <Flex maxWidth={1152} mx="auto" mb={4}>
           <Box width={[1, 0.5, 0.3333]} p={3}>
             <Flex flexDirection="column" alignItems="center">
@@ -188,7 +175,7 @@ function Home() {
             <Flex flexDirection="column" alignItems="center">
               <GiTwoCoins color="#ffb367" size={48} />
               <Text mt={3} mb={2} fontSize={4} textAlign="center">
-                x.xx€ al mese
+                3.99€ al mese
               </Text>
               <Text textAlign="center">per ogni ristorante</Text>
             </Flex>
@@ -209,10 +196,10 @@ function Home() {
           </Button>
         </Flex>
       </Box>
-      <Box bg="#f2f2f2" py={4}>
+      <Box bg="#fff" py={4}>
         <Text textAlign="center">Stay safe</Text>
       </Box>
-    </Box>
+    </>
   );
 }
 
