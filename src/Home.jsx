@@ -7,6 +7,7 @@ import uploading from './images/uploading.svg';
 import scanMenu from './images/scan_menu.svg';
 import printMenu from './images/print.svg';
 import { useAuth0 } from './services/auth0Wrapper';
+import Footer from './components/Footer';
 
 function Home() {
   const { loginWithRedirect } = useAuth0();
@@ -37,7 +38,7 @@ function Home() {
             height={48}
             variant="xxl"
           >
-            Registrati e prova ora gratis per una settimana
+            Registrati e prova gratis per una settimana
           </Button>
           <Text>poi 3.99€ al mese per ristorante</Text>
         </Flex>
@@ -176,7 +177,7 @@ function Home() {
                 height={48}
                 variant="xxl"
               >
-                Registrati e prova ora gratis per una settimana
+                Registrati e prova gratis per una settimana
               </Button>
             </Flex>
           </Flex>
@@ -215,9 +216,7 @@ function Home() {
           </Box>
         </Flex>
       </Box>
-      <Box bg="#fff" py={4}>
-        <Text textAlign="center">Creato da Mattia Asti</Text>
-      </Box>
+      <Footer />
     </>
   );
 }
