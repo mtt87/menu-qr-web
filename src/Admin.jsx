@@ -1,9 +1,9 @@
 import React from 'react';
 import useSWR from 'swr';
-import { Flex, Text, Box } from 'rebass';
+import { Flex, Text, Box, Link } from 'rebass';
 import request from 'superagent';
 import { useAuth0 } from './services/auth0Wrapper';
-import SubscriptionType from './components/SubscriptionType';
+import Subscription from './components/Subscription';
 import { BASE_URL } from './config';
 import AddRestaurant from './components/AddRestaurant';
 import EditRestaurant from './components/EditRestaurant';
@@ -40,9 +40,11 @@ function Admin() {
       flexDirection="column"
     >
       <Box>
-        <SubscriptionType
-          type={data.subscriptionType}
-          subscriptionEnds={data.subscriptionEnds}
+        <Subscription
+          userId={data.id}
+          userEmail={data.email}
+          status={data.subscriptionStatus}
+          subscriptionEnd={data.subscriptionEnd}
           createdAt={data.createdAt}
           totalRestaurants={data.Restaurants.length}
         />
@@ -54,7 +56,31 @@ function Admin() {
             <EditRestaurant key={restaurant.id} restaurant={restaurant} />
           ))}
         </Flex>
-        <AddRestaurant first={!data.Restaurants.length} />
+        {!data.Restaurants.length ? (
+          <AddRestaurant first={!data.Restaurants.length} />
+        ) : (
+          <>
+            <Text mb={2} fontSize={3} textAlign="center">
+              Hai piú di un ristorante?
+            </Text>
+            <Text textAlign="center">
+              Stiamo lavorando alla possibilitá di inserire più ristoranti,
+              contattaci per avere maggiori informazioni.
+            </Text>
+            <Text mt={3} mb={2} fontSize={3} textAlign="center">
+              Hai bisogno di aiuto o vuoi darci dei suggerimenti?
+            </Text>
+            <Text textAlign="center">
+              Invia una mail a{' '}
+              <Link
+                target="_blank"
+                href="mailto:mattia.asti@gmail.com?subject=menu-qr.tech multi ristorante"
+              >
+                mattia.asti@gmail.com
+              </Link>
+            </Text>
+          </>
+        )}
       </Box>
     </Flex>
   );

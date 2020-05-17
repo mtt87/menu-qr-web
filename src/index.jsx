@@ -22,7 +22,7 @@ const Root = () => (
     domain="project-qr.eu.auth0.com"
     client_id="LjSz01ROKlXkGhkhAixIf51NQ4Njd3BT"
     audience="https://api.menu-qr.tech"
-    redirect_uri={window.location.origin}
+    redirect_uri={`${window.location.origin}/dashboard`}
     onRedirectCallback={onRedirectCallback}
     ui_locales="it"
   >

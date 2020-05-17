@@ -3,6 +3,7 @@ import { Flex, Box, Button, Text } from 'rebass';
 import { useAuth0 } from '../services/auth0Wrapper';
 import HeaderProfile from './HeaderProfile';
 import { FaUser } from 'react-icons/fa';
+import { Route, Link } from 'react-router-dom';
 
 export default function NavHeader() {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -11,7 +12,7 @@ export default function NavHeader() {
       sx={{
         position: 'sticky',
       }}
-      px={3}
+      mx={3}
       height={50}
       backgroundColor="transparent"
       bg="#fff"
@@ -26,17 +27,30 @@ export default function NavHeader() {
         >
           {isAuthenticated ? (
             <>
-              <HeaderProfile />
-              <Button variant="outline" onClick={() => logout()}>
-                Logout
-              </Button>
+              <Route exact path="/">
+                <HeaderProfile />
+                <Link to="/dashboard">
+                  <Button variant="outline">
+                    <Flex>
+                      <FaUser />
+                      <Text ml={2}>Accedi</Text>
+                    </Flex>
+                  </Button>
+                </Link>
+              </Route>
+              <Route exact path="/dashboard">
+                <HeaderProfile />
+                <Button variant="outline" onClick={() => logout()}>
+                  Logout
+                </Button>
+              </Route>
             </>
           ) : (
             <Flex flex={1} justifyContent="flex-end">
               <Button variant="outline" onClick={() => loginWithRedirect()}>
                 <Flex>
                   <FaUser />
-                  <Text ml={2}>Area ristoratore</Text>
+                  <Text ml={2}>Accedi</Text>
                 </Flex>
               </Button>
             </Flex>

@@ -20,7 +20,7 @@ function Home() {
           <Image src="//placehold.it/600x300" />
         </Flex> */}
         <Heading fontSize={4} mb={1} textAlign="center" as="h2">
-          Genera un magic QR code che non cambia mai
+          Genera un codice QR magico che non cambia mai
         </Heading>
         <Heading fontSize={4} mb={1} textAlign="center" as="h2">
           I tuoi clienti potranno visualizzare il tuo menù online
@@ -37,7 +37,7 @@ function Home() {
             height={48}
             variant="xxl"
           >
-            Prova ora gratis per una settimana
+            Registrati e prova ora gratis per una settimana
           </Button>
           <Text>poi 3.99€ al mese per ristorante</Text>
         </Flex>
@@ -94,7 +94,7 @@ function Home() {
             p={4}
           >
             <Heading mb={3} as="h2" fontSize={5} textAlign="center">
-              Ottieni un magic QR code
+              Ottieni un codice QR magico
             </Heading>
             <Text fontSize={3} textAlign="center">
               Da stampare e mettere sui tavoli
@@ -137,7 +137,7 @@ function Home() {
               I clienti visualizzano il tuo menù
             </Heading>
             <Text fontSize={3} textAlign="center">
-              Tramite scansione del magic QR code visualizzeranno il tuo menù
+              Tramite scansione del codice QR magico visualizzeranno il tuo menù
             </Text>
           </Flex>
         </Flex>
@@ -159,7 +159,7 @@ function Home() {
             p={3}
           >
             <Heading fontSize={5} mb={3} textAlign="center" as="h2">
-              Devi cambiare il menù? Il magic QR non cambia!
+              Devi cambiare il menù? Il codice QR magico non cambia!
             </Heading>
             <Text fontSize={3} mb={2} textAlign="center">
               Evita di stampare continuamente nuovi QR code
@@ -170,6 +170,15 @@ function Home() {
             <Text fontSize={3} mb={2} textAlign="center">
               I tuoi clienti vedranno sempre il menù aggiornato!
             </Text>
+            <Flex mt={4} justifyContent="center">
+              <Button
+                onClick={() => loginWithRedirect()}
+                height={48}
+                variant="xxl"
+              >
+                Registrati e prova ora gratis per una settimana
+              </Button>
+            </Flex>
           </Flex>
         </Flex>
       </Box>
@@ -190,9 +199,9 @@ function Home() {
             <Flex flexDirection="column" alignItems="center">
               <GiTwoCoins color="#ffb367" size={48} />
               <Text mt={3} mb={2} fontSize={4} textAlign="center">
-                3.99€ al mese
+                Solo 3.99€ al mese
               </Text>
-              <Text textAlign="center">per ogni ristorante</Text>
+              <Text textAlign="center">per ristorante</Text>
             </Flex>
           </Box>
           <Box width={[1, 0.5, 0.3333]} p={3}>
@@ -205,14 +214,9 @@ function Home() {
             </Flex>
           </Box>
         </Flex>
-        <Flex justifyContent="center">
-          <Button onClick={() => loginWithRedirect()} height={48} variant="xxl">
-            Prova ora gratis per una settimana
-          </Button>
-        </Flex>
       </Box>
       <Box bg="#fff" py={4}>
-        <Text textAlign="center">Stay safe</Text>
+        <Text textAlign="center">Creato da Mattia Asti</Text>
       </Box>
     </>
   );

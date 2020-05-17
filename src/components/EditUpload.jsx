@@ -86,7 +86,7 @@ function EditUpload({ restaurantId, data }) {
               <Button width={1} variant="outline">
                 <Flex justifyContent="center" alignItems="center">
                   <FaPrint />
-                  <Text ml={2}>Stampa QR code</Text>
+                  <Text ml={2}>Stampa codice QR</Text>
                 </Flex>
               </Button>
             </Link>
@@ -136,8 +136,8 @@ function EditUpload({ restaurantId, data }) {
             {uploading && <Text my={2}>Caricamento...</Text>}
           </Box>
         ) : (
-          <Flex alignItems="center">
-            <Box mr={2}>
+          <Flex alignItems="space-between">
+            <Box flex={1} mr={2}>
               <Button onClick={() => setOpenUpdate(true)} variant="transparent">
                 <Flex alignItems="center">
                   <FaEdit />
@@ -145,7 +145,7 @@ function EditUpload({ restaurantId, data }) {
                 </Flex>
               </Button>
             </Box>
-            <Box mr={2}>
+            <Box flex={1} mr={2}>
               <Button onClick={deleteMenu} variant="transparent">
                 <Flex alignItems="center">
                   <FaTrash />

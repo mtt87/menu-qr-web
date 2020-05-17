@@ -43,11 +43,20 @@ export default {
       },
     },
     transparent: {
+      px: 1,
       variant: 'buttons.primary',
       height: 40,
       bg: 'transparent',
       color: 'primary',
       boxShadow: 'none',
+      ':hover': {
+        boxShadow: 'none',
+      },
+    },
+    small: {
+      variant: 'buttons.primary',
+      fontSize: 1,
+      height: 28,
     },
     xxl: {
       variant: 'buttons.primary',

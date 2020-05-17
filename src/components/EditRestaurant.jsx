@@ -59,11 +59,14 @@ function EditRestaurant({ restaurant }) {
                 deleteRestaurant();
               }
             }}
-            bg="#d9455f"
+            variant="outline"
+            sx={{ borderColor: '#d9455f' }}
           >
             <Flex>
-              <FaTrash />
-              <Text ml={2}>Rimuovi</Text>
+              <FaTrash color="#d9455f" />
+              <Text color="#d9455f" ml={2}>
+                Elimina
+              </Text>
             </Flex>
           </Button>
         </Flex>

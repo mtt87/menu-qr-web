@@ -22,6 +22,10 @@ export const Auth0Provider = ({
       const auth0FromHook = await createAuth0Client(initOptions);
       setAuth0(auth0FromHook);
 
+      if (window.location.search.includes('error=')) {
+        window.alert('Errore login riprova di nuovo');
+      }
+
       if (
         window.location.search.includes('code=') &&
         window.location.search.includes('state=')

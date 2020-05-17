@@ -158,30 +158,6 @@
             "
           >
             <div class="main">
-              <p
-                style="
-                  text-align: center;
-                  -webkit-text-size-adjust: 100%;
-                  -ms-text-size-adjust: 100%;
-                  margin-bottom: 30px;
-                "
-              >
-                <img
-                  src="https://d17z0vgll9bn0s.cloudfront.net/static/qr.png"
-                  width="50"
-                  alt="Your logo goes here"
-                  style="
-                    -ms-interpolation-mode: bicubic;
-                    border: 0;
-                    height: auto;
-                    line-height: 100%;
-                    outline: none;
-                    text-decoration: none;
-                    background-color: #ffffff;
-                  "
-                />
-              </p>
-
               <!-- Email change content -->
               {% if operation == 'change_email' %}
 
@@ -193,7 +169,7 @@
                   -ms-text-size-adjust: 100%;
                 "
               >
-                Your email address has been updated.
+                La tua email è stata aggiornata.
               </p>
 
               {% else %}
@@ -210,8 +186,8 @@
                   -ms-text-size-adjust: 100%;
                 "
               >
-                Click and confirm that you want to sign in to {{
-                application.name }}. This link will expire in 5 minutes.
+                Clicca e conferma che vuoi accedere all' {{ application.name }}.
+                <br />Questo link scade tra 5 minuti.
               </p>
 
               <div style="text-align: center;">
@@ -246,14 +222,14 @@
                     -ms-text-size-adjust: 100%;
                   "
                   href="{{ link }}"
-                  >Sign in to {{ application.name }}</a
+                  >Esegui accesso</a
                 >
               </div>
 
               {% elsif send == 'code' %}
 
               <p style="font-size: 1.4em; line-height: 1.3;">
-                Your verification code is: <b>{{ code }}</b>
+                Il tuo codice di verifica è: <b>{{ code }}</b>
               </p>
 
               {% endif %} {% endif %}
