@@ -21,7 +21,7 @@ function Home() {
           <Image src="//placehold.it/600x300" />
         </Flex> */}
         <Heading fontSize={4} mb={1} textAlign="center" as="h2">
-          Genera un codice QR magico che non cambia mai
+          Genera un codice QR smart che non cambia mai
         </Heading>
         <Heading fontSize={4} mb={1} textAlign="center" as="h2">
           I tuoi clienti potranno visualizzare il tuo menù online
@@ -38,7 +38,7 @@ function Home() {
             height={48}
             variant="xxl"
           >
-            Registrati e prova gratis per una settimana
+            Registrati e prova gratis per due settimane
           </Button>
           <Text>poi 3.99€ al mese per ristorante</Text>
         </Flex>
@@ -95,7 +95,7 @@ function Home() {
             p={4}
           >
             <Heading mb={3} as="h2" fontSize={5} textAlign="center">
-              Ottieni un codice QR magico
+              Ottieni un codice QR smart
             </Heading>
             <Text fontSize={3} textAlign="center">
               Da stampare e mettere sui tavoli
@@ -135,10 +135,11 @@ function Home() {
             p={4}
           >
             <Heading fontSize={5} mb={3} textAlign="center" as="h2">
-              I clienti visualizzano il tuo menù
+              I clienti visualizzeranno il tuo menù
             </Heading>
             <Text fontSize={3} textAlign="center">
-              Tramite scansione del codice QR magico visualizzeranno il tuo menù
+              Aprendo la fotocamera dello smartphone e inquadrando il codice QR
+              smart
             </Text>
           </Flex>
         </Flex>
@@ -160,7 +161,7 @@ function Home() {
             p={3}
           >
             <Heading fontSize={5} mb={3} textAlign="center" as="h2">
-              Devi cambiare il menù? Il codice QR magico non cambia!
+              Devi cambiare il menù? Il codice QR smart non cambia!
             </Heading>
             <Text fontSize={3} mb={2} textAlign="center">
               Evita di stampare continuamente nuovi QR code
@@ -177,14 +178,14 @@ function Home() {
                 height={48}
                 variant="xxl"
               >
-                Registrati e prova gratis per una settimana
+                Registrati e prova gratis per due settimane
               </Button>
             </Flex>
           </Flex>
         </Flex>
       </Box>
       <Box py={4} bg="#f2f2f2">
-        <Flex flexWrap="wrap" maxWidth={1152} mx="auto" mb={4}>
+        <Flex flexWrap="wrap" maxWidth={1152} mx="auto">
           <Box width={[1, 0.5, 0.3333]} p={3}>
             <Flex flexDirection="column" alignItems="center">
               <FcKindle size={48} />

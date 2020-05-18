@@ -13,6 +13,8 @@ function Footer() {
           display="block"
           sx={{ textDecoration: 'none' }}
           mx={1}
+          target="_blank"
+          rel="noopener"
           href="https://hextech.ch"
         >
           <span role="img" aria-label="logo">
@@ -22,16 +24,36 @@ function Footer() {
         </Link>
       </Text>
       <Flex justifyContent="center" alignItems="center">
-        <Link mx={2} href="https://www.linkedin.com/in/mattiaasti/">
+        <Link
+          mx={2}
+          target="_blank"
+          rel="noopener"
+          href="https://www.linkedin.com/in/mattiaasti/"
+        >
           <FaLinkedin size={22} color="#0077b5" />
         </Link>
-        <Link mx={2} href="https://twitter.com/mattia_asti">
+        <Link
+          mx={2}
+          target="_blank"
+          rel="noopener"
+          href="https://twitter.com/mattia_asti"
+        >
           <FaTwitter size={22} color="#1da1f2" />
         </Link>
-        <Link mx={2} href="https://github.com/mtt87">
+        <Link
+          mx={2}
+          target="_blank"
+          rel="noopener"
+          href="https://github.com/mtt87"
+        >
           <FaGithub size={22} color="#333" />
         </Link>
-        <Link mx={2} href="mailto:mattia.asti@gmail.com">
+        <Link
+          mx={2}
+          target="_blank"
+          rel="noopener"
+          href="mailto:mattia.asti@gmail.com"
+        >
           <FaAt size={22} />
         </Link>
       </Flex>

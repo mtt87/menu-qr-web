@@ -3,8 +3,8 @@ import { addDays, format } from 'date-fns';
 import { it } from 'date-fns/locale';
 import { Text, Button, Flex } from 'rebass';
 import { loadStripe } from '@stripe/stripe-js';
-import { PRODUCT_ID } from '../config';
-const stripePromise = loadStripe('pk_test_Qf10DlLrzLdKiHxg7SaxXEIk00UIXiiPXU');
+import { PRODUCT_ID, STRIPE_KEY } from '../config';
+const stripePromise = loadStripe(STRIPE_KEY);
 
 function Subscription({
   userId,

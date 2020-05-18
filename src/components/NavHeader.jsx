@@ -33,7 +33,7 @@ export default function NavHeader() {
                   <Button variant="outline">
                     <Flex>
                       <FaUser />
-                      <Text ml={2}>Accedi</Text>
+                      <Text ml={2}>Pannello di controllo</Text>
                     </Flex>
                   </Button>
                 </Link>
