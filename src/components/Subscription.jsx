@@ -33,7 +33,7 @@ function Subscription({
       <Flex flexDirection="column" justifyContent="center" alignItems="center">
         <Text textAlign="center" mb={3} fontWeight="bold" color="orange">
           {`Periodo di prova gratuito. Scade il ${format(
-            addDays(new Date(createdAt), 7),
+            addDays(new Date(createdAt), 14),
             'EEEE dd MMMM yyyy',
             { locale: it },
           )}`}
