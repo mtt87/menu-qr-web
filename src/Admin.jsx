@@ -39,7 +39,7 @@ function Admin() {
       bg="#fff"
       flexDirection="column"
     >
-      <Box>
+      {/* <Box>
         <Subscription
           userId={data.id}
           userEmail={data.email}
@@ -48,8 +48,8 @@ function Admin() {
           createdAt={data.createdAt}
           totalRestaurants={data.Restaurants.length}
         />
-      </Box>
-      <Box height={1} bg="#f2f2f2" my={4} />
+      </Box> */}
+      {/* <Box height={1} bg="#f2f2f2" my={4} /> */}
       <Box mb={4}>
         <Flex flexDirection="column" justifyContent="center">
           {data.Restaurants.map((restaurant) => (

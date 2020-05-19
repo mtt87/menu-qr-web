@@ -17,9 +17,6 @@ function Home() {
         <Heading fontSize={5} my={4} textAlign="center" as="h1">
           Il menù per i ristoranti ai tempi del COVID-19
         </Heading>
-        {/* <Flex mb={4} justifyContent="center">
-          <Image src="//placehold.it/600x300" />
-        </Flex> */}
         <Heading fontSize={4} mb={1} textAlign="center" as="h2">
           Genera un codice QR smart che non cambia mai
         </Heading>
@@ -38,9 +35,9 @@ function Home() {
             height={48}
             variant="xxl"
           >
-            Registrati e prova gratis per due settimane
+            REGISTRATI
           </Button>
-          <Text>poi 3.99€ al mese per ristorante</Text>
+          <Text>Gratis per il singolo ristorante</Text>
         </Flex>
       </Box>
 
@@ -172,15 +169,6 @@ function Home() {
             <Text fontSize={3} mb={2} textAlign="center">
               I tuoi clienti vedranno sempre il menù aggiornato!
             </Text>
-            <Flex mt={4} justifyContent="center">
-              <Button
-                onClick={() => loginWithRedirect()}
-                height={48}
-                variant="xxl"
-              >
-                Registrati e prova gratis per due settimane
-              </Button>
-            </Flex>
           </Flex>
         </Flex>
       </Box>
@@ -201,9 +189,9 @@ function Home() {
             <Flex flexDirection="column" alignItems="center">
               <GiTwoCoins color="#ffb367" size={48} />
               <Text mt={3} mb={2} fontSize={4} textAlign="center">
-                Solo 3.99€ al mese
+                Gratis
               </Text>
-              <Text textAlign="center">per ristorante</Text>
+              <Text textAlign="center">per singolo ristorante</Text>
             </Flex>
           </Box>
           <Box width={[1, 0.5, 0.3333]} p={3}>
@@ -217,6 +205,11 @@ function Home() {
           </Box>
         </Flex>
       </Box>
+      <Flex mt={4} justifyContent="center">
+        <Button onClick={() => loginWithRedirect()} height={48} variant="xxl">
+          REGISTRATI GRATIS
+        </Button>
+      </Flex>
       <Footer />
     </>
   );

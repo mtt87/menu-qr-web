@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text, Button } from 'rebass';
+import { Flex, Text } from 'rebass';
 import { useAuth0 } from '../services/auth0Wrapper';
 import { FaTrash } from 'react-icons/fa';
 import request from 'superagent';
@@ -44,12 +44,14 @@ function EditRestaurant({ restaurant }) {
       mb={4}
       flexDirection="column"
     >
-      <Flex mb={3} justifyContent="space-between">
-        <Text fontSize={4} key={restaurant.id}>
-          {restaurant.name}
-        </Text>
-        <Flex>
-          <Button
+      <Flex mb={3}>
+        <Flex
+          sx={{ cursor: 'pointer' }}
+          alignItems="center"
+          justifyContent="center"
+          mr={2}
+        >
+          <FaTrash
             onClick={async () => {
               if (
                 window.confirm(
@@ -59,17 +61,12 @@ function EditRestaurant({ restaurant }) {
                 deleteRestaurant();
               }
             }}
-            variant="outline"
-            sx={{ borderColor: '#d9455f' }}
-          >
-            <Flex>
-              <FaTrash color="#d9455f" />
-              <Text color="#d9455f" ml={2}>
-                Elimina
-              </Text>
-            </Flex>
-          </Button>
+            color="#d9455f"
+          />
         </Flex>
+        <Text fontSize={4} key={restaurant.id}>
+          {restaurant.name}
+        </Text>
       </Flex>
       <Flex flex={1} height="100%" mx={-2} flexDirection="row" flexWrap="wrap">
         {restaurant.Uploads.map((data) => (
