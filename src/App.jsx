@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Admin from './Admin';
 import { useAuth0 } from './services/auth0Wrapper';
-import NavHeader from './components/NavHeader';
+// import NavHeader from './components/NavHeader';
 import PaymentSuccess from './components/PaymentSuccess';
 import PaymentCancel from './components/PaymentCancel';
 import PrivateRoute from './components/PrivateRoute';
@@ -18,7 +18,7 @@ function App() {
   return (
     <Router>
       <Flex height="100%" flex={1} flexDirection="column">
-        <NavHeader />
+        {/* <NavHeader /> */}
         <Switch>
           <Route path="/payment_success">
             <PaymentSuccess />

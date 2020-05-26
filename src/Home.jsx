@@ -1,18 +1,86 @@
 import React from 'react';
-import { Heading, Box, Text, Flex, Image, Button } from 'rebass';
-import { FaLeaf } from 'react-icons/fa';
+import { Heading, Box, Text, Flex, Image, Link } from 'rebass';
+import { FaLeaf, FaGithub } from 'react-icons/fa';
 import { GiTwoCoins } from 'react-icons/gi';
 import { FcKindle } from 'react-icons/fc';
 import uploading from './images/uploading.svg';
 import scanMenu from './images/scan_menu.svg';
 import printMenu from './images/print.svg';
-import { useAuth0 } from './services/auth0Wrapper';
 import Footer from './components/Footer';
 
 function Home() {
-  const { loginWithRedirect } = useAuth0();
   return (
     <>
+      <Box maxWidth={1152} px={3} mx="auto" py={6}>
+        <Heading textAlign="center" mb={4} fontSize={5}>
+          Ciao
+        </Heading>
+        <Text fontSize={3} mb={2} textAlign="center">
+          ho sviluppato questo prototipo di servizio per la gestione dei codici
+          QR e menù dei ristoranti.
+        </Text>
+        <Text fontSize={3} mb={5} textAlign="center">
+          Mi sono poi reso conto strada facendo che ci sono valide alternative e
+          ho quindi deciso di non portare avanti il progetto e renderlo
+          open-source.
+        </Text>
+        <Flex mb={5} justifyContent="center" alignItems="center">
+          <Box flex={1}>
+            <Link
+              target="_blank"
+              rel="noopener"
+              href="https://github.com/mtt87/menu-qr-server"
+              sx={{ textDecoration: 'none' }}
+            >
+              <Flex p={2} alignItems="center" flexDirection="column">
+                <FaGithub size={48} color="#333" />
+                <Text mt={3} fontSize={4}>
+                  Server
+                </Text>
+                <Text mt={2}>https://github.com/mtt87/menu-qr-server</Text>
+              </Flex>
+            </Link>
+          </Box>
+          <Box flex={1}>
+            <Link
+              target="_blank"
+              rel="noopener"
+              href="https://github.com/mtt87/menu-qr-web"
+              sx={{ textDecoration: 'none' }}
+            >
+              <Flex p={2} alignItems="center" flexDirection="column">
+                <FaGithub size={48} color="#333" />
+                <Text mt={3} fontSize={4}>
+                  Web app
+                </Text>
+                <Text mt={2}>https://github.com/mtt87/menu-qr-web</Text>
+              </Flex>
+            </Link>
+          </Box>
+          <Box flex={1}>
+            <Link
+              target="_blank"
+              rel="noopener"
+              href="https://github.com/mtt87/menu-qr-view"
+              sx={{ textDecoration: 'none' }}
+            >
+              <Flex p={2} alignItems="center" flexDirection="column">
+                <FaGithub size={48} color="#333" />
+                <Text mt={3} fontSize={4}>
+                  Web redirect page
+                </Text>
+                <Text mt={2}>https://github.com/mtt87/menu-qr-view</Text>
+              </Flex>
+            </Link>
+          </Box>
+        </Flex>
+        <Text fontSize={3} mb={5} textAlign="center">
+          Grazie per aver provato il servizio.
+        </Text>
+      </Box>
+      <Box width={1}>
+        <Box height={1} bg="#ccc" width={1} />
+      </Box>
       <Box pb={4}>
         <Heading fontSize={5} my={4} textAlign="center" as="h1">
           Il menù per i ristoranti ai tempi del COVID-19
@@ -23,22 +91,6 @@ function Home() {
         <Heading fontSize={4} mb={1} textAlign="center" as="h2">
           I tuoi clienti potranno visualizzare il tuo menù online
         </Heading>
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          my={4}
-          justifyContent="center"
-        >
-          <Button
-            mb={3}
-            onClick={() => loginWithRedirect()}
-            height={48}
-            variant="xxl"
-          >
-            REGISTRATI
-          </Button>
-          <Text>Gratis per il singolo ristorante</Text>
-        </Flex>
       </Box>
 
       <Box bg="#f2f2f2">
@@ -205,11 +257,6 @@ function Home() {
           </Box>
         </Flex>
       </Box>
-      <Flex mt={4} justifyContent="center">
-        <Button onClick={() => loginWithRedirect()} height={48} variant="xxl">
-          REGISTRATI GRATIS
-        </Button>
-      </Flex>
       <Footer />
     </>
   );
